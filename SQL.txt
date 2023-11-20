@@ -1,0 +1,72 @@
+CREATE TABLE Utilisateur (
+	UserID int PRIMARY KEY AUTO_INCREMENT,
+    Name varchar(50),
+    Email varchar (100)
+)
+
+CREATE TABLE Project (
+	ProjecrID int PRIMARY KEY AUTO_INCREMENT,
+    Name varchar(50),
+    Description varchar (200),
+    dates date
+)
+CREATE TABLE Squad (
+    SquadID int PRIMARY KEY AUTO_INCREMENT,
+    ProjectID int,
+    UserID int,
+    FOREIGN KEY (ProjectID) REFERENCES Project(ProjecrID),
+    FOREIGN KEY (UserID) REFERENCES Utilisateur(UserID),
+    Name varchar(50),
+    Description varchar (200),
+    dates date
+)
+
+CREATE TABLE Subcategory (
+    SubcategoryID int PRIMARY KEY AUTO_INCREMENT,
+    SubcategoryName varchar(50)
+)
+
+CREATE TABLE category (
+    CategoryID int PRIMARY KEY AUTO_INCREMENT,
+    SubcategoryID int,
+    FOREIGN KEY (SubcategoryID) REFERENCES            
+    Subcategory(SubcategoryID),
+    CategoryName varchar(50)
+)
+CREATE TABLE Ressource (
+    ResourceID int PRIMARY KEY AUTO_INCREMENT,
+    categoryID int,
+    subcategoryId int,
+    SquadID int,
+    projectID int,
+    FOREIGN KEY (categoryID) REFERENCES 
+    category(CategoryID),
+    FOREIGN KEY (subcategoryId) REFERENCES
+    Subcategory(SubcategoryID ),
+    FOREIGN KEY (SquadID) REFERENCES
+    Squad (SquadID),
+    FOREIGN KEY (projectID)
+    REFERENCES Project(ProjecrID)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
